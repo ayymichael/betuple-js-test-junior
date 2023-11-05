@@ -1,0 +1,42 @@
+JS_TEST_DB_PROJECT ?= js-test-db-project
+JS_TEST_DB_IMAGE_VERSION ?= 0.0.1
+JS_TEST_DB_IMAGE_NAME ?= js-test-db
+JS_TEST_DB_NAME ?= jstestdb
+JS_TEST_DB_USERNAME ?= jstestdb
+JS_TEST_DB_PASSWORD ?= jstestdbpwd
+JS_TEST_DB_DATA_PATH ?= /src/docker/js-test-db-data/
+JS_TEST_DB_PROXY_NETWORK ?= "proxy-network-js-test"
+
+.PHONY: default
+default:
+
+.PHONY: build
+build:
+	docker build -t $(JS_TEST_DB_IMAGE_NAME):$(JS_TEST_DB_IMAGE_VERSION) -f Dockerfile .
+
+.PHONY: run
+run:
+	- docker network create $(JS_TEST_DB_PROXY_NETWORK)
+	- mkdir -p $(JS_TEST_DB_DATA_PATH)
+	APP_PROXY_NETWORK=$(JS_TEST_DB_PROXY_NETWORK) \
+	APP_IMAGE_VERSION=$(JS_TEST_DB_IMAGE_VERSION) \
+	APP_IMAGE_NAME=$(JS_TEST_DB_IMAGE_NAME) \
+    APP_DB_USERNAME=$(JS_TEST_DB_USERNAME) \
+    APP_DB_PASSWORD=$(JS_TEST_DB_PASSWORD) \
+    APP_DB_NAME=$(JS_TEST_DB_NAME) \
+    APP_DB_DATA_PATH=$(JS_TEST_DB_DATA_PATH) \
+	docker-compose -p $(JS_TEST_DB_PROJECT) -f docker-compose.yaml up -d
+
+.PHONY: down
+down:
+	- docker network create $(JS_TEST_DB_PROXY_NETWORK)
+	- mkdir -p $(JS_TEST_DB_DATA_PATH)
+	sleep 1
+	APP_PROXY_NETWORK=$(JS_TEST_DB_PROXY_NETWORK) \
+	APP_IMAGE_VERSION=$(JS_TEST_DB_IMAGE_VERSION) \
+	APP_IMAGE_NAME=$(JS_TEST_DB_IMAGE_NAME) \
+    APP_DB_USERNAME=$(JS_TEST_DB_USERNAME) \
+    APP_DB_PASSWORD=$(JS_TEST_DB_PASSWORD) \
+    APP_DB_NAME=$(JS_TEST_DB_NAME) \
+    APP_DB_DATA_PATH=$(JS_TEST_DB_DATA_PATH) \
+	docker-compose -p $(JS_TEST_DB_PROJECT) down

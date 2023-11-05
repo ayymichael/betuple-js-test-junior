@@ -1,0 +1,21 @@
+{
+  "name": "elsi-admin",
+  "version": "0.0.1",
+  "description": "generated app",
+  "devDependencies": {
+    "@babel/preset-react": "7.17.x",
+    "@rollup/plugin-babel": "5.3.x",
+    "@rollup/plugin-commonjs": "22.0.x",
+    "@rollup/plugin-eslint": "9.0.x",
+    "@rollup/plugin-node-resolve": "13.3.x",
+    "@rollup/plugin-replace": "4.0.x",
+    "eslint-plugin-react": "7.31.x",
+    "react": "18.1.x",
+    "react-dom": "18.1.x",
+    "react-router-dom": "6.5.x",
+    "rollup": "2.75.x",
+    "stylelint": "15.9.x",
+    "sass": "^1.69.5",
+    "stylelint-config-standard-scss": "9.0.x"
+  }
+}

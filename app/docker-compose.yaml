@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+
+  js-test-app:
+    image: "${APP_IMAGE_NAME}:${APP_IMAGE_VERSION}"
+    ports:
+      - "8080:80"
+
+networks:
+  default:
+    name: ${APP_PROXY_NETWORK}
+    external: true

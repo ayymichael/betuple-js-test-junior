@@ -1,0 +1,66 @@
+openapi: 3.0.3
+info:
+  title: BETUPLE JS TEST JUNIOR API
+  version: 0.0.1
+servers:
+  - url: /api/v1
+paths:
+  /event:
+    post:
+      tags:
+        - Events
+      summary: create event
+      description: create a new event
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserEvent"
+      responses:
+        '201':
+          description: new user event was created
+        '400':
+          description: Bad request, for any other error. Error reason in logs.
+    get:
+      tags:
+        - Events
+      summary: show events
+      description: show the last 9 user events
+      responses:
+        '200':
+          description: returns a list of user events
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/UserEvent"
+        '400':
+          description: Bad request, for any other error. Error reason in logs.
+components:
+  schemas:
+    ColorEvent:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: created on backend side
+        eventTime:
+          type: string
+          description: the time when event was created
+        selectedColorR:
+          type: number
+          description: part R for color in rgb format
+          minimum: 0
+          maximum: 255
+        selectedColorG:
+          type: number
+          description: part G for color in rgb format
+          minimum: 0
+          maximum: 255
+        selectedColorB:
+          type: number
+          description: part B for color in rgb format
+          minimum: 0
+          maximum: 255

@@ -1,0 +1,17 @@
+{
+  "name": "js-test-api",
+  "version": "0.0.1",
+  "description": "js test api",
+  "devDependencies": {
+    "@rollup/plugin-babel": "5.3.x",
+    "@rollup/plugin-commonjs": "22.0.x",
+    "@rollup/plugin-eslint": "9.0.x",
+    "@rollup/plugin-node-resolve": "13.3.x",
+    "@rollup/plugin-replace": "4.0.x",
+    "eslint": "8.50.x",
+    "express": "4.18.x",
+    "cors": "2.8.x",
+    "rollup": "2.75.x",
+    "pg": "8.11.x"
+  }
+}

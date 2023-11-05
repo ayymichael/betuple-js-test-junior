@@ -1,0 +1,16 @@
+{
+  "name": "js-test-migrations",
+  "version": "0.0.1",
+  "description": "js test migrations",
+  "devDependencies": {
+    "@rollup/plugin-babel": "5.3.x",
+    "@rollup/plugin-commonjs": "22.0.x",
+    "@rollup/plugin-node-resolve": "13.3.x",
+    "@rollup/plugin-replace": "4.0.x",
+    "rollup": "2.75.x"
+  },
+  "dependencies": {
+    "db-migrate": "0.11.x",
+    "db-migrate-pg": "1.3.x"
+  }
+}

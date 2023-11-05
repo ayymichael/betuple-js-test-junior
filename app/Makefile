@@ -1,0 +1,25 @@
+JS_TEST_APP_PROJECT ?= js-test-app-project
+JS_TEST_APP_IMAGE_VERSION ?= 0.0.1
+JS_TEST_APP_IMAGE_NAME ?= js-test-app
+JS_TEST_PROXY_NETWORK ?= "proxy-network-js-test"
+
+.PHONY: build
+build:
+	docker build -t $(JS_TEST_APP_IMAGE_NAME):$(JS_TEST_APP_IMAGE_VERSION) .
+
+.PHONY: push
+push:
+	docker push $(JS_TEST_APP_IMAGE_NAME):$(JS_TEST_APP_IMAGE_VERSION)
+
+.PHONY: run
+run:
+	APP_IMAGE_VERSION=$(JS_TEST_APP_IMAGE_VERSION) \
+	APP_IMAGE_NAME=$(JS_TEST_APP_IMAGE_NAME) \
+	APP_PROXY_NETWORK=$(JS_TEST_PROXY_NETWORK) \
+	docker-compose -p $(JS_TEST_APP_PROJECT) -f docker-compose.yaml up -d
+
+.PHONY: down
+down:
+	APP_IMAGE_VERSION=$(JS_TEST_APP_IMAGE_VERSION) \
+	APP_IMAGE_NAME=$(JS_TEST_APP_IMAGE_NAME) \
+	docker-compose -p $(JS_TEST_APP_PROJECT) down

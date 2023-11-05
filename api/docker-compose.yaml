@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  js-test-api:
+    image: "${APP_IMAGE_NAME}:${APP_IMAGE_VERSION}"
+    environment:
+      - DB_USERNAME=${APP_DB_USERNAME}
+      - DB_NAME=${APP_DB_NAME}
+      - DB_PASSWORD=${APP_DB_PASSWORD}
+      - DB_PORT=${APP_DB_PORT}
+      - DB_HOST=${APP_DB_HOST}
+    ports:
+      - "8011:3000"
+
+networks:
+  default:
+    name: ${APP_PROXY_NETWORK}
+    external: true
